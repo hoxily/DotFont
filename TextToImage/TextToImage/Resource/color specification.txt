@@ -1,0 +1,2 @@
+BackgroundColor = ARGB(255,   0,   0,   0);
+ForegroundColor = ARGB(255, 187, 187, 187);
