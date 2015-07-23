@@ -70,11 +70,11 @@
             this.comboBoxPredefinedResolution.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPredefinedResolution.FormattingEnabled = true;
             this.comboBoxPredefinedResolution.Items.AddRange(new object[] {
+            "Nokia 5130(240x320)",
             "iPhone 5s(640x1136)",
             "iPad Air(1536x2048)",
             "iPad mini(768x1024)",
             "iPad mini2(1536x2048)",
-            "Nokia 5130(240x320)",
             "VGA(640x480)",
             "SVGA(1024x768)",
             "720p(1280x720)",
@@ -209,7 +209,7 @@
             this.numericUpDownLineDistance.Size = new System.Drawing.Size(99, 21);
             this.numericUpDownLineDistance.TabIndex = 9;
             this.numericUpDownLineDistance.Value = new decimal(new int[] {
-            12,
+            15,
             0,
             0,
             0});
@@ -229,6 +229,11 @@
             this.numericUpDownPagePadding.Name = "numericUpDownPagePadding";
             this.numericUpDownPagePadding.Size = new System.Drawing.Size(97, 21);
             this.numericUpDownPagePadding.TabIndex = 7;
+            this.numericUpDownPagePadding.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             // 
             // label4
             // 
@@ -274,12 +279,12 @@
             // textBoxInputText
             // 
             this.textBoxInputText.Location = new System.Drawing.Point(12, 259);
+            this.textBoxInputText.MaxLength = 2100000000;
             this.textBoxInputText.Multiline = true;
             this.textBoxInputText.Name = "textBoxInputText";
-            this.textBoxInputText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxInputText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxInputText.Size = new System.Drawing.Size(360, 142);
             this.textBoxInputText.TabIndex = 5;
-            this.textBoxInputText.WordWrap = false;
             // 
             // FormMain
             // 

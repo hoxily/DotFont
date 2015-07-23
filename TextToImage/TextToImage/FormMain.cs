@@ -58,12 +58,10 @@ namespace TextToImage
             fontSize = Convert.ToInt32(comboBoxFontSize.SelectedItem as string);
             Bitmap img = DrawImage(width, height, pagePadding, lineDistance, fontSize);
             FormPreview previewer = new FormPreview(img);
-            //img.Save("b.png", System.Drawing.Imaging.ImageFormat.Png);
             previewer.ShowDialog();
         }
-        //暂不考虑英文的word wrapper
         /// <summary>
-        /// 计算所需高度
+        /// 计算所需高（暂不考虑英文的word wrapper）
         /// </summary>
         /// <param name="width">目标宽度</param>
         /// <param name="pagePadding">页边距</param>
@@ -104,19 +102,10 @@ namespace TextToImage
         }
         private Bitmap DrawImage(int width, int height, int pagePadding, int lineDistance, int fontSize)
         {
-            
-            
             int halfFontSize = fontSize / 2;
             string unicodeFontFileName = "songti-" + fontSize + "x" + fontSize + ".bin";
-            string asciiFontFileName = "terminus-ascii-" + halfFontSize + "x" + fontSize + "-95chars.png";
-            //debug:
-            //Bitmap bmp = Bitmap.FromFile(Application.StartupPath + "\\Resource\\" + asciiFontFileName) as Bitmap;
-            //(new FormPreview(bmp)).ShowDialog();
-            //
+            string asciiFontFileName = "terminus-ascii-" + halfFontSize + "x" + fontSize + "-95chars.bmp";
             PixelFont font = new PixelFont(Application.StartupPath + "\\Resource\\" + unicodeFontFileName, Application.StartupPath + "\\Resource\\" + asciiFontFileName, Color.Black);
-            //test
-            //font.DrawString(g, new SolidBrush(Color.Black), textBoxInputText.Text, 0, 0);
-            //
             List<string> lines = CalculateHeight(width, pagePadding, lineDistance, font, textBoxInputText.Text);
             Bitmap target = new Bitmap(width, lines.Count * lineDistance + 2 * pagePadding);
             Graphics g = Graphics.FromImage(target);

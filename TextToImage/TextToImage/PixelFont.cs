@@ -64,17 +64,6 @@ namespace TextToImage
         }
         public void DrawString(Graphics g, Brush b, string text, int x, int y)
         {
-            //if (text.Length > 1)
-            //{
-            //    int len = MeasureCharDrawingLength(text[0]);
-            //    DrawChar(g, b, text[0], x, y);
-            //    DrawString(g, b, text.Substring(1), x + len, y);
-            //}
-            //else if(text.Length == 1)
-            //{
-            //    DrawChar(g, b, text[0], x, y);
-            //}
-            //改递归为循环,提高效率
             foreach (var c in text)
             {
                 int move = MeasureCharDrawingLength(c);
@@ -88,11 +77,6 @@ namespace TextToImage
             if (' ' <= c && c <= '~')
             {
                 int offset = c - ' ';
-                //对8x16的英文来说,这样画会出现毛刺,真是奇怪.
-                //但是打开terminus-ascii-8x16-95chars.bmp查看却是正常的.
-                //g.DrawImage(_ASCIIImage, new Rectangle(x, y, Width / 2, Height), new Rectangle(Width / 2 * offset, 0, Width / 2, Height), GraphicsUnit.Pixel);
-                //-=-=-
-                //擦,这样子画也出现毛刺,真恶心.
                 int width = Width / 2;
                 int height = Height;
                 for (int cy = 0; cy < height; cy++)
@@ -100,10 +84,6 @@ namespace TextToImage
                     for (int cx = 0; cx < width; cx++)
                     {
                         Color color = _ASCIIImage.GetPixel(offset * width + cx, cy);
-                        //if (!(color.R == _ASCIIBackgroundColor.R && color.G == _ASCIIBackgroundColor.G && color.B == _ASCIIBackgroundColor.B))
-                        //{//foreground
-                        //    g.FillRectangle(b, x + cx, y + cy, 1, 1);
-                        //}
 
                         //用画板逐像素画的图,用Bitmap.FromFile载入得到的Bitmap对象产生了误差
                         //所以得设定个误差阈值
@@ -143,25 +123,8 @@ namespace TextToImage
         {
             //ascii image data
             _ASCIIImage = Bitmap.FromFile(asciiFontFileName,false) as Bitmap;
-            //debug
-            //_ASCIIImage.Save("a.bmp", System.Drawing.Imaging.ImageFormat.Bmp);
-            //
             _ASCIIBackgroundColor = asciiFontBackgroundColor;
-            //for (int x = 0; x < _ASCIIImage.Width; x++)
-            //{
-            //    for (int y = 0; y < _ASCIIImage.Height; y++)
-            //    {
-            //        if (_ASCIIImage.GetPixel(x, y).R == _ASCIIBackgroundColor.R)
-            //        {
-            //            _ASCIIImage.SetPixel(x, y, Color.White);
-            //        }
-            //        else
-            //        {
-            //            _ASCIIImage.SetPixel(x, y, Color.Black);
-            //        }
-            //    }
-            //}
-            
+
             //unicode image data
             FileStream fs = new FileStream(unicodeFontFileName, FileMode.Open);
             byte[] buffer = new byte[256];
