@@ -230,7 +230,7 @@
             this.numericUpDownPagePadding.Size = new System.Drawing.Size(97, 21);
             this.numericUpDownPagePadding.TabIndex = 7;
             this.numericUpDownPagePadding.Value = new decimal(new int[] {
-            3,
+            6,
             0,
             0,
             0});

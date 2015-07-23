@@ -73,7 +73,7 @@ namespace TextToImage
             List<string> result = new List<string>();
             int availableWidth = width - pagePadding * 2;//除去页边距之后的可用宽度
             List<char> line = new List<char>();
-            string[] lines = text.Split(new char[]{'\r', '\n'}, StringSplitOptions.None);
+            string[] lines = text.Split(new string[] {"\r\n" }, StringSplitOptions.None);
             int length = 0;
             foreach (var l in lines)
             {
